@@ -14,9 +14,10 @@ public class GameService {
     // service devolve DTO.
     @Autowired
     private GameRepository gamerepository;
-    public List<Game> findAll () {
+    public List<GameMinDTO> findAll () {
         List<Game> result = gamerepository.findAll();
-        return  result;
+        List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
+        return  dto;
 
     }
 
